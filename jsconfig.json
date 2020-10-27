@@ -29,6 +29,22 @@
         "src/components/index.vue",
         "src/components/index.scss",
         "src/components/index.css"
+      ],
+      "@store/*": ["src/store/*"],
+      "@store": [
+        "src/store/index.js",
+        "src/store/index.json",
+        "src/store/index.vue",
+        "src/store/index.scss",
+        "src/store/index.css"
+      ],
+      "@utils/*": ["src/utils/*"],
+      "@utils": [
+        "src/utils/index.js",
+        "src/utils/index.json",
+        "src/utils/index.vue",
+        "src/utils/index.scss",
+        "src/utils/index.css"
       ]
     }
   }
