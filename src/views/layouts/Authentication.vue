@@ -8,7 +8,9 @@ export default {
   <v-main class="login-wrap">
     <v-container fluid fill-height>
       <v-layout align-center justify-center>
-        <router-view></router-view>
+        <transition mode="out-in" name="fade">
+          <router-view></router-view>
+        </transition>
       </v-layout>
     </v-container>
   </v-main>

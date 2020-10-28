@@ -18,9 +18,10 @@ export default {
     <v-main>
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
-        router-view
         <!-- If using vue-router -->
-        <router-view></router-view>
+        <transition name="fade">
+          <router-view></router-view>
+        </transition>
       </v-container>
     </v-main>
 
