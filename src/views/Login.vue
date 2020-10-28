@@ -1,6 +1,7 @@
 <script>
 import wait from '@/src/utils/wait'
 import { required, minLength, maxLength } from 'vuelidate/lib/validators'
+import { mapActions } from 'vuex'
 
 export default {
   data() {
@@ -9,6 +10,9 @@ export default {
       userLogin: 'KODE',
       password: '123456',
       hidePassword: true,
+
+      serverError: '',
+      showServerError: false,
     }
   },
 
@@ -54,6 +58,8 @@ export default {
   },
 
   methods: {
+    ...mapActions('auth', ['auth']),
+
     async tryLogin() {
       this.$v.$touch()
       if (this.$v.$error || this.loading) return void 0
@@ -61,8 +67,17 @@ export default {
       this.loading = true
 
       try {
-        await wait(2000)
+        await wait(1000)
+
+        await this.auth({
+          login: this.userLogin,
+          password: this.password,
+        })
+
+        this.$router.push({ name: 'otp' })
       } catch (error) {
+        this.serverError = error.message
+        this.showServerError = true
       } finally {
         this.loading = false
       }
@@ -111,5 +126,15 @@ export default {
         </v-btn>
       </v-card-actions>
     </v-card>
+
+    <v-snackbar
+      v-model="showServerError"
+      color="error"
+      :timeout="2000"
+      bottom
+      left
+    >
+      {{ serverError }}
+    </v-snackbar>
   </v-flex>
 </template>

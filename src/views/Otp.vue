@@ -1,12 +1,16 @@
 <script>
 import wait from '@/src/utils/wait'
 import { required, minLength, maxLength } from 'vuelidate/lib/validators'
+import { mapActions } from 'vuex'
 
 export default {
   data() {
     return {
       otp: '123456',
       loading: false,
+
+      showServerError: false,
+      serverError: '',
     }
   },
 
@@ -22,11 +26,11 @@ export default {
     otpError() {
       return this.$helperValidate('otp', {
         minLength: {
-          text: 'Одноразовый пароль должен состояить из {} символов',
+          text: 'Одноразовый пароль должен состоять из {} символов',
           param: 'min',
         },
         maxLength: {
-          text: 'Одноразовый пароль должен состояить из {} символов',
+          text: 'Одноразовый пароль должен состоять из {} символов',
           param: 'max',
         },
       })
@@ -34,6 +38,8 @@ export default {
   },
 
   methods: {
+    ...mapActions('auth', ['checkOtp']),
+
     async validateOtp() {
       this.$v.$touch()
       if (this.$v.$error || this.loading) return void 0
@@ -42,7 +48,12 @@ export default {
 
       try {
         await wait(500)
+        await this.checkOtp(this.otp)
+
+        this.$router.push({ name: 'home' })
       } catch (error) {
+        this.serverError = error.message
+        this.showServerError = true
       } finally {
         this.loading = false
       }
@@ -61,14 +72,14 @@ export default {
             width="180"
             height="180"
           />
-          <h1 class="flex my-4 primary--text">Авторизация</h1>
+          <h1 class="flex my-4 primary--text">Подтверждение паролем</h1>
         </div>
         <v-form ref="loginForm" @submit.prevent="validateOtp">
           <v-text-field
             v-model="otp"
             append-icon="mdi-lock"
             name="login"
-            label="Login"
+            label="Code from sms"
             type="text"
             :error-messages="otpError"
           />
@@ -81,5 +92,15 @@ export default {
         </v-btn>
       </v-card-actions>
     </v-card>
+
+    <v-snackbar
+      v-model="showServerError"
+      color="error"
+      :timeout="2000"
+      bottom
+      left
+    >
+      {{ serverError }}
+    </v-snackbar>
   </v-flex>
 </template>
