@@ -40,9 +40,8 @@ export const actions = {
   },
 
   logout({ commit }) {
-    commit('user/setUserData', null, { root: true })
+    commit('user/setUserData', {}, { root: true })
     LocalStorageController.removeValue('userData')
-    router.push({ name: 'login' })
   },
 
   init() {},
