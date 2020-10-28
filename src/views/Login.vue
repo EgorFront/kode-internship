@@ -1,7 +1,6 @@
 <script>
 import wait from '@/src/utils/wait'
-import { required, minLength } from 'vuelidate/lib/validators'
-import maxLength from 'vuelidate/lib/validators/maxLength'
+import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 
 export default {
   data() {

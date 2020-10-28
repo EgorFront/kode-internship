@@ -20,7 +20,11 @@ router.beforeEach(async (routeTo, routeFrom, next) => {
   }
 
   if (!isUserAuth) {
-    redirectTo('login')
+    if (authRoutes.includes(routeTo.name)) {
+      return next()
+    } else {
+      return redirectTo('login')
+    }
   } else {
     if (authRoutes.includes(routeTo.name)) {
       redirectTo('home')
