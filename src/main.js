@@ -8,6 +8,10 @@ import vuetify from './plugins/vuetify'
 import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate)
 
+// Custom plugin for helper validate
+import helperValidate from '@src/plugins/helperValidate.js'
+Vue.use(helperValidate)
+
 Vue.config.productionTip = false
 
 new Vue({
