@@ -12,12 +12,14 @@ const router = new VueRouter({
 
 // Before each route evaluates...
 router.beforeEach(async (routeTo, routeFrom, next) => {
+  if (!store.getters['user/loggedIn']) {
+    try {
+      await store.dispatch('auth/auth')
+    } catch (e) {}
+  }
+
   const isUserAuth = store.getters['user/loggedIn']
   const authRoutes = ['login', 'otp']
-
-  if (!isUserAuth) {
-    await store.dispatch('auth/auth')
-  }
 
   if (!isUserAuth) {
     if (authRoutes.includes(routeTo.name)) {
@@ -27,7 +29,7 @@ router.beforeEach(async (routeTo, routeFrom, next) => {
     }
   } else {
     if (authRoutes.includes(routeTo.name)) {
-      redirectTo('home')
+      return redirectTo('home')
     }
 
     next()
