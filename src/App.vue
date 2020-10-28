@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <transition name="fade">
+    <transition mode="out-in" name="fade">
       <router-view></router-view>
     </transition>
   </v-app>
