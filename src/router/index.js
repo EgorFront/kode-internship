@@ -1,30 +1,38 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import routes from './routes'
+import store from '@store'
 
-Vue.use(VueRouter);
-
-const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home
-  },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
-];
+Vue.use(VueRouter)
 
 const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes
-});
+  routes,
+  mode: 'history',
+})
 
-export default router;
+// Before each route evaluates...
+router.beforeEach(async (routeTo, routeFrom, next) => {
+  const isUserAuth = store.getters['user/loggedIn']
+  const authRoutes = ['login', 'otp']
+
+  if (!isUserAuth) {
+    await store.dispatch('auth/auth')
+  }
+
+  if (!isUserAuth) {
+    redirectTo('login')
+  } else {
+    if (authRoutes.includes(routeTo.name)) {
+      redirectTo('home')
+    }
+
+    next()
+  }
+
+  function redirectTo(name) {
+    if (routeTo.name === name) return next()
+    else return next({ name })
+  }
+})
+
+export default router

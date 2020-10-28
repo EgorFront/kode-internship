@@ -30,6 +30,14 @@
         "src/components/index.scss",
         "src/components/index.css"
       ],
+      "@views/*": ["src/views/*"],
+      "@views": [
+        "src/views/index.js",
+        "src/views/index.json",
+        "src/views/index.vue",
+        "src/views/index.scss",
+        "src/views/index.css"
+      ],
       "@store/*": ["src/store/*"],
       "@store": [
         "src/store/index.js",
