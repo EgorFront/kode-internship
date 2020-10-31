@@ -66,7 +66,11 @@
                 <v-divider class="mx-2"></v-divider>
 
                 <v-card-actions>
-                  <v-btn block color="deep-purple lighten-2" text>
+                  <v-btn
+                    :to="{ name: 'pokemon-details', params: { id: card.id } }"
+                    block
+                    color="primary"
+                  >
                     Детальный обзор
                   </v-btn>
                 </v-card-actions>

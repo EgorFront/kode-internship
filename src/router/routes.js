@@ -10,9 +10,10 @@ export default [
       },
 
       {
-        path: '/about',
-        name: 'about',
-        component: () => lazyLoadView(import('@views/About.vue')),
+        path: '/pokemon/:id',
+        name: 'pokemon-details',
+        component: () => lazyLoadView(import('@views/Pokemon-details.vue')),
+        props: true,
       },
     ],
   },
