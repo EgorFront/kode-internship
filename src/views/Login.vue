@@ -7,8 +7,8 @@ export default {
   data() {
     return {
       loading: false,
-      userLogin: 'KODE',
-      password: '123456',
+      userLogin: 'kode@kode.ru',
+      password: 'Enk0deng',
       hidePassword: true,
 
       serverError: '',

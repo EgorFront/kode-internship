@@ -48,8 +48,8 @@ export const actions = {
 }
 
 function mockServerAuth(userData) {
-  const correctLogin = 'KODE'
-  const correctPassword = '123456'
+  const correctLogin = 'kode@kode.ru'
+  const correctPassword = 'Enk0deng'
 
   const { login, password } = userData
 
