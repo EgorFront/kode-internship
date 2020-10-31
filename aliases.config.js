@@ -9,6 +9,7 @@ const aliases = {
   '@views': 'src/views',
   '@store': 'src/store',
   '@utils': 'src/utils',
+  '@service': 'src/Service.js',
 }
 
 module.exports = {

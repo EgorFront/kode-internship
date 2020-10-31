@@ -53,6 +53,14 @@
         "src/utils/index.vue",
         "src/utils/index.scss",
         "src/utils/index.css"
+      ],
+      "@service/*": ["src/Service.js/*"],
+      "@service": [
+        "src/Service.js/index.js",
+        "src/Service.js/index.json",
+        "src/Service.js/index.vue",
+        "src/Service.js/index.scss",
+        "src/Service.js/index.css"
       ]
     }
   }
