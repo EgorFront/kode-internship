@@ -1,8 +1,6 @@
 module.exports = {
   transpileDependencies: ['vuetify'],
 
-  publicPath: process.env.NODE_ENV === 'production' ? '/kode-internship/' : '/',
-
   chainWebpack(config) {
     // Set up all the aliases we use in our app.
     config.resolve.alias.clear().merge(require('./aliases.config').webpack)
