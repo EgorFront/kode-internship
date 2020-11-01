@@ -1,5 +1,7 @@
 module.exports = {
-  transpileDependencies: ["vuetify"],
+  transpileDependencies: ['vuetify'],
+
+  publicPath: process.env.NODE_ENV === 'production' ? '/kode-internship/' : '/',
 
   chainWebpack(config) {
     // Set up all the aliases we use in our app.
@@ -12,4 +14,4 @@ module.exports = {
     // it's necessary for some Vetur autocompletions.
     config.resolve.extensions.delete('.vue')
   },
-};
+}
