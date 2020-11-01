@@ -67,8 +67,8 @@ function mockServerValidateOtp(otp) {
   return new Promise((resolve, reject) => {
     if (correctOtp === otp) {
       resolve({
-        login: 'KODE',
-        password: '123456',
+        login: 'kode@kode.ru',
+        password: 'Enk0deng',
       })
     } else {
       reject(new Error('Неверный пароль otp'))
