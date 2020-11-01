@@ -60,7 +60,7 @@ describe('@utils/get-object-property', () => {
 
 ## Второе задание
 
-[Демо проекта](https://egorfront.github.io/kode-internship/)
+[Демо проекта](https://kode-internship.vercel.app/)
 
 ### Декомпозиция
 
@@ -115,7 +115,7 @@ describe('@utils/get-object-property', () => {
 
 ### Сложности при создании проекта
 
-При создании проекта сложностей не возникло
+Возникли сложности с деплоем проекта на gh, поэтому выбрал [https://vercel.com/](https://vercel.com/)
 
 ### Запуск проекта в dev режиме
 
